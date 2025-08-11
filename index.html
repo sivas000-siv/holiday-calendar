@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holiday Calendar 2025 - India</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .controls {
+            padding: 20px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        select, button {
+            padding: 10px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        select:hover, button:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-button {
+            background: #667eea;
+            color: white;
+            border: none;
+        }
+        
+        .nav-button:hover {
+            background: #5a6fd8;
+        }
+        
+        .calendar-container {
+            padding: 20px;
+        }
+        
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .day-header {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .calendar-day {
+            background: white;
+            min-height: 80px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .calendar-day:hover {
+            background: #f0f8ff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .calendar-day.empty {
+            background: #f8f9fa;
+        }
+        
+        .calendar-day.holiday {
+            background: linear-gradient(135deg, #FFE5E5, #FFB3BA);
+            border: 2px solid #FF6B6B;
+        }
+        
+        .day-number {
+            font-weight: bold;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .holiday-name {
+            font-size: 11px;
+            color: #d63384;
+            font-weight: bold;
+            line-height: 1.2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .holidays-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .holidays-list h3 {
+            color: #333;
+            margin-top: 0;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .holiday-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #FF6B6B;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .holiday-date {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .holiday-title {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .deployment-info {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px;
+            text-align: center;
+        }
+        
+        .deployment-info h4 {
+            color: #1976d2;
+            margin: 0 0 10px 0;
+        }
+        
+        .deployment-info p {
+            margin: 5px 0;
+            color: #424242;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗓️ Holiday Calendar 2025</h1>
+            <p>India Holiday Calendar - Deployed Web Application</p>
+        </div>
+        
+        <div class="deployment-info">
+            <h4>🌐 Now Ready for Online Deployment!</h4>
+            <p>This HTML file can be deployed to any web hosting service for public access</p>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="location">📍 Location:</label>
+                <select id="location" onchange="updateCalendar()">
+                    <option value="All">All Locations</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Pune">Pune</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="monthSelect">📅 Month:</label>
+                <select id="monthSelect" onchange="updateFromDropdowns()">
+                    <option value="0">January</option>
+                    <option value="1">February</option>
+                    <option value="2">March</option>
+                    <option value="3">April</option>
+                    <option value="4">May</option>
+                    <option value="5">June</option>
+                    <option value="6">July</option>
+                    <option value="7">August</option>
+                    <option value="8">September</option>
+                    <option value="9">October</option>
+                    <option value="10">November</option>
+                    <option value="11">December</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="yearSelect">🗓️ Year:</label>
+                <select id="yearSelect" onchange="updateFromDropdowns()">
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025" selected>2025</option>
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <button class="nav-button" onclick="previousMonth()">← Previous</button>
+                <button class="nav-button" onclick="nextMonth()">Next →</button>
+            </div>
+        </div>
+        
+        <div class="calendar-container">
+            <div class="calendar" id="calendar">
+                <div class="day-header">SUN</div>
+                <div class="day-header">MON</div>
+                <div class="day-header">TUE</div>
+                <div class="day-header">WED</div>
+                <div class="day-header">THU</div>
+                <div class="day-header">FRI</div>
+                <div class="day-header">SAT</div>
+                <!-- Calendar days will be generated by JavaScript -->
+            </div>
+            
+            <div class="holidays-list">
+                <h3 id="holidaysTitle">🎉 Holidays this Month</h3>
+                <div id="holidaysList">
+                    <!-- Holidays will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Holiday Calendar Web Application • Accessible via HTTP URL</p>
+            <p>🌐 Share this URL with anyone to access the calendar!</p>
+        </div>
+    </div>
+
+    <script>
+        // Sample holiday data - in a real application, this would come from your CSV
+        const holidays = [
+            { date: '2025-01-01', name: 'New Year Day', locations: ['All'] },
+            { date: '2025-01-26', name: 'Republic Day', locations: ['All'] },
+            { date: '2025-03-14', name: 'Holi', locations: ['All'] },
+            { date: '2025-04-18', name: 'Good Friday', locations: ['All'] },
+            { date: '2025-05-01', name: 'Labour Day', locations: ['Mumbai', 'Delhi', 'Bangalore'] },
+            { date: '2025-08-15', name: 'Independence Day', locations: ['All'] },
+            { date: '2025-10-02', name: 'Gandhi Jayanti', locations: ['All'] },
+            { date: '2025-10-31', name: 'Diwali', locations: ['All'] },
+            { date: '2025-12-25', name: 'Christmas', locations: ['All'] }
+        ];
+
+        let currentMonth = 0; // January
+        let currentYear = 2025;
+        let currentLocation = 'All';
+
+        const monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            
+            // Clear previous calendar (except headers)
+            const dayHeaders = calendar.querySelectorAll('.day-header');
+            calendar.innerHTML = '';
+            dayHeaders.forEach(header => calendar.appendChild(header));
+            
+            // Update dropdown selections to match current month/year
+            document.getElementById('monthSelect').value = currentMonth;
+            document.getElementById('yearSelect').value = currentYear;
+            
+            // Get first day of month and number of days
+            const firstDay = new Date(currentYear, currentMonth, 1);
+            const lastDay = new Date(currentYear, currentMonth + 1, 0);
+            const daysInMonth = lastDay.getDate();
+            const startingDayOfWeek = firstDay.getDay();
+            
+            // Add empty cells for days before the first day of the month
+            for (let i = 0; i < startingDayOfWeek; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendar.appendChild(emptyDay);
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                
+                const dayNumber = document.createElement('div');
+                dayNumber.className = 'day-number';
+                dayNumber.textContent = day;
+                dayElement.appendChild(dayNumber);
+                
+                // Check if this day is a holiday
+                const dateStr = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                const holiday = holidays.find(h => h.date === dateStr && 
+                    (currentLocation === 'All' || h.locations.includes('All') || h.locations.includes(currentLocation)));
+                
+                if (holiday) {
+                    dayElement.classList.add('holiday');
+                    const holidayName = document.createElement('div');
+                    holidayName.className = 'holiday-name';
+                    holidayName.textContent = holiday.name;
+                    dayElement.appendChild(holidayName);
+                }
+                
+                calendar.appendChild(dayElement);
+            }
+            
+            updateHolidaysList();
+        }
+
+        function updateHolidaysList() {
+            const holidaysList = document.getElementById('holidaysList');
+            const holidaysTitle = document.getElementById('holidaysTitle');
+            
+            // Filter holidays for current month and location
+            const monthHolidays = holidays.filter(h => {
+                const holidayDate = new Date(h.date);
+                return holidayDate.getMonth() === currentMonth && 
+                       holidayDate.getFullYear() === currentYear &&
+                       (currentLocation === 'All' || h.locations.includes('All') || h.locations.includes(currentLocation));
+            });
+            
+            if (monthHolidays.length === 0) {
+                holidaysTitle.textContent = '📅 No holidays this month';
+                holidaysList.innerHTML = '<p>There are no holidays in the selected month and location.</p>';
+            } else {
+                holidaysTitle.textContent = `🎉 Holidays in ${monthNames[currentMonth]} ${currentYear}`;
+                holidaysList.innerHTML = '';
+                
+                monthHolidays.forEach(holiday => {
+                    const holidayItem = document.createElement('div');
+                    holidayItem.className = 'holiday-item';
+                    
+                    const holidayDate = new Date(holiday.date);
+                    const dateStr = holidayDate.toLocaleDateString('en-US', { 
+                        weekday: 'long', 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                    });
+                    
+                    holidayItem.innerHTML = `
+                        <div>
+                            <div class="holiday-title">${holiday.name}</div>
+                            <div class="holiday-date">${dateStr}</div>
+                        </div>
+                    `;
+                    
+                    holidaysList.appendChild(holidayItem);
+                });
+            }
+        }
+
+        function updateCalendar() {
+            currentLocation = document.getElementById('location').value;
+            generateCalendar();
+        }
+
+        function updateFromDropdowns() {
+            currentMonth = parseInt(document.getElementById('monthSelect').value);
+            currentYear = parseInt(document.getElementById('yearSelect').value);
+            generateCalendar();
+        }
+
+        function previousMonth() {
+            currentMonth--;
+            if (currentMonth < 0) {
+                currentMonth = 11;
+                currentYear--;
+            }
+            generateCalendar();
+        }
+
+        function nextMonth() {
+            currentMonth++;
+            if (currentMonth > 11) {
+                currentMonth = 0;
+                currentYear++;
+            }
+            generateCalendar();
+        }
+
+        // Initialize calendar when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            generateCalendar();
+        });
+    </script>
+</body>
+</html>
